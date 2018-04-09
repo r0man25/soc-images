@@ -79,4 +79,17 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(),['post_id' => 'id'])
             ->count();
     }
+
+    public function complain(User $user)
+    {
+        /* @var $redis Connection */
+        $redis = Yii::$app->redis;
+        $key = "post:{$this->id}:complaints";
+
+        if (!$redis->sismember($key, $user->id)) {
+            $redis->sadd($key, $user->id);
+            $this->complaints++;
+            return $this->save(false, ['complaints']);
+        }
+    }
 }

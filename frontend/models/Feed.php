@@ -59,4 +59,15 @@ class Feed extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(),['post_id' => 'post_id'])
             ->count();
     }
+
+
+    /**
+     * @param \frontend\models\User $user
+     */
+    public function isReported(User $user)
+    {
+        /* @var $redis Connection */
+        $redis = Yii::$app->redis;
+        return $redis->sismember("post:{$this->post_id}:complaints", $user->id);
+    }
 }

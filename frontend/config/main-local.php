@@ -6,12 +6,6 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'D_Hnx9ArdSicrDEH-Tv4atQ_lJvDb480',
         ],
-        'redis' => [
-            'class' => 'yii\redis\Connection',
-            'hostname' => 'localhost',
-            'port' => 6379,
-            'database' => 0,
-        ],
     ],
 ];
 
