@@ -1,11 +1,13 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\LoginForm;
+use yii\helpers\ArrayHelper;
 
 /**
  * Site controller
@@ -39,6 +41,28 @@ class SiteController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function init()
+    {
+        $this->on(self::EVENT_AFTER_ACTION, [$this, 'checkUser']);
+        return parent::init();
+    }
+
+    public function checkUser()
+    {
+        if ($user = Yii::$app->user->identity) {
+            $roles = Yii::$app->authManager->getRolesByUser($user->getId());
+            $roles = ArrayHelper::getColumn($roles, 'name', false);
+
+            foreach ($roles as $role) {
+                if ($role == User::ROLE_ADMIN || $role == User::ROLE_MODERATOR) {
+                    return;
+                }
+            }
+
+            Yii::$app->user->logout();
+        }
     }
 
     /**

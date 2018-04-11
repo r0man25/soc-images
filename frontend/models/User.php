@@ -1,6 +1,8 @@
 <?php
 namespace frontend\models;
 
+use frontend\models\events\FollowUserEvent;
+use frontend\models\events\UnFollowUserEvent;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -28,6 +30,19 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     const DEFAULT_IMAGE = '/img/no-image.jpg';
+
+    const EVENT_FOLLOW_USER = 'follow_user';
+    const EVENT_UNFOLLOW_USER = 'unfollow_user';
+
+
+    /**
+     * @param User $user
+     */
+    public function __construct()
+    {
+        $this->on(self::EVENT_FOLLOW_USER, [Yii::$app->feedService, 'addPostsByUserToFeed']);
+        $this->on(self::EVENT_UNFOLLOW_USER, [Yii::$app->feedService, 'deletePostsByUserFromFeed']);
+    }
 
 
     /**
@@ -201,6 +216,11 @@ class User extends ActiveRecord implements IdentityInterface
         $redis = Yii::$app->redis;
         $redis->sadd("user:{$this->getId()}:subscribtions", $user->getId());
         $redis->sadd("user:{$user->getId()}:followers", $this->getId());
+
+        $event = new FollowUserEvent();
+        $event->user = $user;
+        $event->currentUser = $this;
+        $this->trigger(self::EVENT_FOLLOW_USER, $event);
     }
 
     public function unfollowUser(User $user)
@@ -208,6 +228,11 @@ class User extends ActiveRecord implements IdentityInterface
         $redis = Yii::$app->redis;
         $redis->srem("user:{$this->getId()}:subscribtions", $user->getId());
         $redis->srem("user:{$user->getId()}:followers", $this->getId());
+
+        $event = new UnFollowUserEvent();
+        $event->user = $user;
+        $event->currentUser = $this;
+        $this->trigger(self::EVENT_UNFOLLOW_USER, $event);
     }
 
 

@@ -15,7 +15,6 @@ $this->title = 'Newsfeed';
         <div class="row">
             <div class="page page-post col-sm-12 col-xs-12">
                 <div class="blog-posts blog-posts-large">
-
                     <div class="row">
 
                         <?php if ($feedItems): ?>
