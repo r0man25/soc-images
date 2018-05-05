@@ -1,0 +1,139 @@
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.map h2{
+    text-align: center;
+    font-family: arial,sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.map img{
+    display: block;
+    margin: 0 auto;
+}
+
+.search-form h3 {
+    text-align: center;
+    font-family: arial,sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.search-form label {
+    font-family: arial,sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.search-form select {
+    display: block;
+    width: 100%;
+    margin: 5px 0 20px 0;
+    background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);;
+    padding: 5px;
+    font-family: arial,sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+    height: 34px;
+}
+
+.search-form input {
+    width: 100%;
+    display: inline-block;
+    font-family: arial,sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+    text-decoration: none;
+    user-select: none;
+    padding: 10px 1.2em;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+    background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+    transition: all .218s ease 0s;
+}
+
+.search-form input:active {
+    color: rgb(24,24,24);
+    border: 1px solid rgb(198,198,198);
+    background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);;
+}
+.search-form input:hover {
+    color: rgb(51,51,51);
+    border: 1px solid rgb(204,204,204);
+    background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+
+.sort-button:nth-child(2){
+    right: 0;
+}
+
+
+.qwe {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.sort-button {
+    position: absolute;
+    width: 45%;
+    display: inline-block;
+    font-family: arial,sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+    text-decoration: none;
+    user-select: none;
+    padding: 10px 1.2em;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+    background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+    transition: all .218s ease 0s;
+}
+
+.sort-button:active {
+    color: rgb(24,24,24);
+    border: 1px solid rgb(198,198,198);
+    background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);;
+}
+.sort-button:hover {
+    color: rgb(51,51,51);
+    border: 1px solid rgb(204,204,204);
+    background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+
+.sort-header {
+    font-family: arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+}
+
+.sort-val {
+    font-family: arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+}
+
+.route {
+    background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+    padding: 2%;
+    margin: 20px 0;
+    border: 1px solid rgb(204,204,204);
+}

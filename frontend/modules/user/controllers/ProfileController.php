@@ -20,6 +20,10 @@ class ProfileController extends Controller
 {
     public function actionView($nickname)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/user/default/login']);
+        }
+
         $currentUser = Yii::$app->user->identity;
         $currentUserPosts = $currentUser->posts;
         $modelPicture = new PictureForm();
